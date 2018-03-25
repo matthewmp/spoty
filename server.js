@@ -35,10 +35,11 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/build'))
+app.use(express.static(__dirname + '/login'))
    .use(cookieParser());
 
 app.get('/login', function(req, res) {
+
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -102,11 +103,12 @@ app.get('/callback', function(req, res) {
         });
 
         //we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:8888#' +
+        res.redirect('http://localhost:3000#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
           }));
+        
        
       } else {
         res.redirect('/#' +
