@@ -1,0 +1,16 @@
+.main-header {
+	background: #2ab858;
+}
+
+.search-form{
+	margin: auto;
+	max-width: 50%;
+}
+
+#inp-search{
+	color: #fff;
+}
+
+.btn-search span{
+	color: #fff;
+}
