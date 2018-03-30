@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import * as actions from '../actions';
+
+import Header from './header/Header';
 
 
 
@@ -16,17 +17,6 @@ class App extends Component {
     return ids;
   }
 
-  // Part of API Login Procedure
-  componentDidMount(){ 
-     var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-          }
-          this.props.dispatch(actions.set_tokens(hashParams));
-
-  }
   // Check App State in Console
   showState = () => {
     console.log(this.props.state);
@@ -44,23 +34,38 @@ class App extends Component {
     let id = this.getIds();
     this.props.dispatch(actions.get_playlist_tracks(id.token, '5BzivFb136jUvAIkuCFDZC' , id.user))
   }
-  
+
+  getFeaturedPlaylists = () => {
+    let id = this.getIds();
+    this.props.dispatch(actions.get_featured_playlists(id.token));
+  }
+
+  // Part of API Login Procedure
+  componentDidMount(){ 
+    var hashParams = {};
+    var e, r = /([^&;=]+)=?([^&;]*)/g,
+        q = window.location.hash.substring(1);
+    while ( e = r.exec(q)) {
+       hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
+
+    new Promise((resolve, reject) => {
+      this.props.dispatch(actions.set_tokens(hashParams));  
+      resolve();
+    })
+    .then(() => {
+      this.getProfile();
+    })
+    
+    
+
+  }
 
   render() {
+    this.showState();
     return (
       <div className="App">
-        <header className="App-header">
-          <button onClick={this.showState}>Show State</button>
-          <button onClick={this.getProfile}>Get Profile</button>
-          <button onClick={this.getPlaylists}> getPlaylists</button>
-          <button onClick={this.getPlaylistTracks}> getPlaylistTRACK</button>
-          <h1 className="App-title">Welcome to React</h1>
-        
-
-     
-
-        </header>
-       
+        <Header token={this.getIds} profile={this.getProfile} />
       </div>
     );
   }
