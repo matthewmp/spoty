@@ -24,6 +24,21 @@ export const reducer = (state=initialState, action) => {
 			playlists: action.playlists
 		})
 	}
+	else if(action.type === actions.GET_FEATURED_PLAYLISTS){
+		return Object.assign({}, state, {
+			featuredPlaylists: action.payload
+		})
+	}
+	else if(action.type === actions.SEARCH_TRACK){
+		return Object.assign({}, state, {
+			searchTrack: action.payload
+		})
+	}
+	else if(action.type === actions.SEARCH_ARTIST){
+		return Object.assign({}, state, {
+			searchArtist: action.payload
+		})
+	}
 	else {
 		return state;
 	}

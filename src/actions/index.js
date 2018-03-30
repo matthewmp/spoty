@@ -61,3 +61,52 @@ export const get_profile = (token) => dispatch =>{
 	xml.send();
 }
 
+export const GET_FEATURED_PLAYLISTS = 'GET_FEATURED_PLAYLISTS';
+export const get_featured_playlists = (token) => dispatch => {
+	console.log('Inside Featured', token);
+	const url = 'https://api.spotify.com/v1/browse/featured-playlists';
+	let xml = new XMLHttpRequest();
+	xml.open('GET', url);
+	xml.responseType = 'json';
+	xml.setRequestHeader('Authorization', 'Bearer ' + token);
+	xml.onreadystatechange = function(){
+		if(xml.response){
+			dispatch({type: GET_FEATURED_PLAYLISTS, payload: xml.response})
+		}
+	}
+	xml.send();
+}
+
+// Search Spotify with 'term' for tracks then call searchArtist
+export const SEARCH_TRACK = 'SEARCH_TRACK';
+export const searchTrack = (token, term) => dispatch => {
+	let url = `https://api.spotify.com/v1/search?q="${term}"&type=track&limit=50`;
+	var xml = new XMLHttpRequest();
+	xml.open('GET', url);
+	xml.responseType = 'json';
+	xml.setRequestHeader('Authorization', 'Bearer ' + token);
+	xml.onreadystatechange = function(){
+		if(xml.response){
+			dispatch({type: SEARCH_TRACK, payload: xml.response});
+		}
+	}
+	xml.send();
+	dispatch(searchArtist(token, term));
+}
+
+// Search Spotify with 'term' for artists
+export const SEARCH_ARTIST = 'SEARCH_ARTIST';
+export const searchArtist = (token, term) => dispatch => {
+	console.log('Inside search artists');
+	const url = `https://api.spotify.com/v1/search?q="${term}"&type=artist&limit=50`;
+	var xml = new XMLHttpRequest();
+	xml.open('GET', url);
+	xml.responseType = 'json';
+	xml.setRequestHeader('Authorization', 'Bearer ' + token);
+	xml.onreadystatechange = function(){
+		if(xml.response){
+			dispatch({type: SEARCH_ARTIST, payload: xml.response})
+		}
+	}
+	xml.send();
+}
