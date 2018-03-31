@@ -1,7 +1,8 @@
 import * as actions from '../actions';
 
 export const initialState = {
-	test: true
+	test: true,
+	access_token: ''
 }
 
 export const reducer = (state=initialState, action) => {

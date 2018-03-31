@@ -11,8 +11,8 @@ class User extends React.Component{
 
 	render(){
 		return(
-		<div>
-			<span>Hey {this.props.state.name}!</span>
+		<div className="user">
+			<span>Hey {this.props.name}!</span>
 			<MuiThemeProvider>
 				<Avatar
 		          src={this.props.state.img_url}

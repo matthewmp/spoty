@@ -26,6 +26,7 @@ class SearchInput extends React.Component {
 	}
 
 	render(){
+		console.log('SearchInput State: ', this.props.state)
 		return(
 			<div>
 			<form className="search-form" onSubmit={this.onSubmitForm}>
