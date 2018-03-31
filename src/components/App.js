@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import Header from './header/Header';
-
 class App extends Component {
   // Part of API Login Procedure
   componentDidMount(){ 
@@ -20,8 +18,8 @@ class App extends Component {
         resolve();
       })
       .then(()=>{
-        this.props.dispatch(actions.get_profile(this.props.state.access_token));  
-        this.props.history.push('/SearchResults');
+        this.props.dispatch(actions.get_profile(this.props.state.access_token)); 
+        this.props.history.push('/featured-playlists');
       })
     }
     catch(err){

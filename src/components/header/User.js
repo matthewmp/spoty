@@ -5,10 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Avatar from 'material-ui/Avatar';
 
 class User extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 		<div className="user">
