@@ -8,32 +8,40 @@ export const set_tokens = (tokens) => ({
 
 // Get All User Playlists & Add to State
 export const GET_PLAYLISTS = 'GET_PLAYLISTS';
-export const get_playlists = (token) => (dispatch) => {
-	const url = 'https://api.spotify.com/v1/me/playlists?limit=50';
+export const get_playlists = (token, user_id) => dispatch => {
+	const url = `https://api.spotify.com/v1/users/${user_id}/playlists?limit=50`;
 	const xml = new XMLHttpRequest();
 
 	xml.open('GET', url);
 	xml.responseType = 'json';
 	xml.setRequestHeader('Authorization', `Bearer ${token}`);
 
-	xml.onreadystatechange = function(){
-		const resp = xml.response;
-		dispatch({type: GET_PLAYLISTS, playlists: resp})
+	xml.onload = function(){
+		if(xml.status === 200){
+			const resp = xml.response;
+			dispatch({type: GET_PLAYLISTS, playlists: resp});
+			console.log('User playlists: ', resp);
+		} 
 	}
-	xml.onerror = function(e){console.log('ERROR: ', e)}
-	xml.send({limit: 5});
+	xml.onerror = function(e){console.log('ERROR Getting Playlists From Action: ', e)}
+	xml.send();
 }
 
 // Get All Tracks from a PlayList
 export const GET_PLAYLIST_TRACKS = 'GET_PLAYLIST_TRACKS';
-export const get_playlist_tracks = (token, playlist_id, user_id) => (dispatch) => {
+export const get_playlist_tracks = (token, playlist_id, owner_id) => (dispatch) => {
 	let xml = new XMLHttpRequest();
 	xml.responseType = 'json';
-	xml.open('GET', `https://api.spotify.com/v1/users/${user_id}/playlists/${playlist_id}/tracks`);
+	xml.open('GET', `https://api.spotify.com/v1/users/${owner_id}/playlists/${playlist_id}/tracks`);
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
 	
 	xml.onreadystatechange = function(){
-		console.log(xml.response);
+		console.log(playlist_id, owner_id	)
+		console.log('PL TRACKS: ', xml.response);
+		if(xml.response){
+			dispatch({type: GET_PLAYLIST_TRACKS, payload: xml.response.items})	
+		}
+		
 	}
 	xml.send();
 
@@ -47,8 +55,8 @@ export const get_profile = (token) => dispatch =>{
 	xml.open('GET', url);
 	xml.responseType = 'json';
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
-	xml.onreadystatechange = function(){
-		if(xml.response){
+	xml.onload = function(){
+		if(xml.status === 200){
 			const data = {
 				name: xml.response.display_name,
 				followers: xml.response.followers.total,
@@ -62,14 +70,14 @@ export const get_profile = (token) => dispatch =>{
 }
 
 export const GET_FEATURED_PLAYLISTS = 'GET_FEATURED_PLAYLISTS';
-export const get_featured_playlists = (token) => dispatch => {
-	const url = 'https://api.spotify.com/v1/browse/featured-playlists';
+export const get_featured_playlists = (token, user_id) => dispatch => {
+	const url = `https://api.spotify.com/v1/users/${user_id}/playlists`;
 	let xml = new XMLHttpRequest();
 	xml.open('GET', url);
 	xml.responseType = 'json';
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
-	xml.onreadystatechange = function(){
-		if(xml.response){
+	xml.onload = function(){
+		if(xml.status === 200){
 			dispatch({type: GET_FEATURED_PLAYLISTS, payload: xml.response})
 		}
 	}

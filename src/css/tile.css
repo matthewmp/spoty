@@ -1,0 +1,43 @@
+.tile-wrapper{
+	text-align: center;
+	font-family: arial;
+}
+
+.tile {
+	display: inline-block;
+	position: relative;
+	max-width: 200px;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.tile img{
+	max-width: 200px;
+	border-radius: 3px;
+}
+
+.tile:hover > img{
+	filter: brightness(0.2);
+}
+
+.tile:hover > .tile-details span {
+	opacity: 1;
+}
+
+.tile-details  {
+	display: block;
+	position: absolute;
+	width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.tile-details span {
+	display: block;
+	opacity: 0;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 20px;
+}

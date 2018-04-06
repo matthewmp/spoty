@@ -1,0 +1,9 @@
+.user{
+    position: absolute;
+    max-width: 200px;
+    text-align: center;
+    right: 20px;
+    top: 8px;
+    font-family: arial;
+    color: #ffff;
+}

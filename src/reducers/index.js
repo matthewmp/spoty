@@ -1,7 +1,6 @@
 import * as actions from '../actions';
 
 export const initialState = {
-	test: true,
 	access_token: ''
 }
 
@@ -38,6 +37,11 @@ export const reducer = (state=initialState, action) => {
 	else if(action.type === actions.SEARCH_ARTIST){
 		return Object.assign({}, state, {
 			searchArtist: action.payload
+		})
+	}
+	else if(action.type === actions.GET_PLAYLIST_TRACKS){
+		return Object.assign({}, state, {
+			selectedPlaylistTracks: action.payload
 		})
 	}
 	else {

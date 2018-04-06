@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+
 class App extends Component {
   // Part of API Login Procedure
   componentDidMount(){ 
@@ -13,22 +14,20 @@ class App extends Component {
          hashParams[e[1]] = decodeURIComponent(e[2]);
       }
       // Set Access Tokens, Get Profile and Forward User to Main App
-      new Promise((resolve, reject) => {
-        this.props.dispatch(actions.set_tokens(hashParams));  
-        resolve();
-      })
-      .then(()=>{
-        this.props.dispatch(actions.get_profile(this.props.state.access_token)); 
-        this.props.history.push('/featured-playlists');
-      })
+      this.props.dispatch(actions.set_tokens(hashParams));  
     }
+    // Bring Back to Login Screen on Error
     catch(err){
-      window.location.replace("http://localhost:8888");
+     window.location.replace("http://localhost:8888");
     }
+
+    // Get / Set User Profile
+    this.props.dispatch(actions.get_profile (hashParams.access_token));
+    // Redirect to Featured Playlists
+    this.props.history.push('/my-playlists');
   }
 
   render() {
-    
     return (
       <div className="App">
       </div>

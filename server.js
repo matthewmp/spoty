@@ -144,5 +144,15 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
+app.get('/testing', (req, res) => {
+  const obj = {
+    user: 'Matt',
+    level: 100,
+    codeName: 'Wizard of Mars'
+  }
+
+  res.status(200).json(obj);
+})
+
 console.log('Listening on 8888');
 app.listen(8888);
