@@ -44,6 +44,11 @@ export const reducer = (state=initialState, action) => {
 			selectedPlaylistTracks: action.payload
 		})
 	}
+	else if(action.type === actions.CLEAR_PLAYLIST){
+		return Object.assign({}, state, {
+			selectedPlaylistTracks: null
+		})
+	}
 	else {
 		return state;
 	}

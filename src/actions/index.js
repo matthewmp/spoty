@@ -6,10 +6,15 @@ export const set_tokens = (tokens) => ({
 	tokens
 });
 
+export const CLEAR_PLAYLIST = 'CLEAR_PLAYLIST';
+export const clear_playlist = () => ({
+	type: CLEAR_PLAYLIST
+})
+
 // Get All User Playlists & Add to State
 export const GET_PLAYLISTS = 'GET_PLAYLISTS';
 export const get_playlists = (token, user_id) => dispatch => {
-	const url = `https://api.spotify.com/v1/users/${user_id}/playlists?limit=50`;
+	const url = `https://api.spotify.com/v1/me/playlists?limit=50`
 	const xml = new XMLHttpRequest();
 
 	xml.open('GET', url);
@@ -35,10 +40,10 @@ export const get_playlist_tracks = (token, playlist_id, owner_id) => (dispatch) 
 	xml.open('GET', `https://api.spotify.com/v1/users/${owner_id}/playlists/${playlist_id}/tracks`);
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
 	
-	xml.onreadystatechange = function(){
+	xml.onload = function(){
 		console.log(playlist_id, owner_id	)
 		console.log('PL TRACKS: ', xml.response);
-		if(xml.response){
+		if(xml.status === 200){
 			dispatch({type: GET_PLAYLIST_TRACKS, payload: xml.response.items})	
 		}
 		

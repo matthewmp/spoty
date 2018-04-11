@@ -14,9 +14,14 @@ class SearchInput extends React.Component {
 		}
 	}
 
-	onSubmitForm = () => {
-		let ids = this.props.token();
-		this.props.dispatch(actions.searchTrack(ids.token, this.state.term));
+	onSubmitForm = (e) => {
+		e.preventDefault();
+		this.submitSearchTerm();	
+	}
+
+	submitSearchTerm = () => {
+		let token = this.props.state.access_token;
+		this.props.dispatch(actions.searchTrack(token, this.state.term));
 	}
 
 	onInputChange = (e) => {
@@ -29,22 +34,22 @@ class SearchInput extends React.Component {
 		return(
 			<div>
 			<form className="search-form" onSubmit={this.onSubmitForm}>
-				  <MuiThemeProvider>
-				    <TextField
+				 
+				    <input
 				      hintText="Search"
 				      id="inp-search"
-				      defaultValue={this.props.value}
+				      value={this.props.value}
 				      onChange={this.onInputChange}
 				    />
-				   </MuiThemeProvider>
-				   <MuiThemeProvider>
-				    <FlatButton
-				      label="submit"
-				      primary={true}
+				   
+				  
+				    <button 
 				      className="btn-search"
 				      onClick={this.onSubmitForm}
-				     />
-				   </MuiThemeProvider>
+				     > 
+				     Submit 
+				     </button>
+				   
 			</form>
 			</div>
 		)

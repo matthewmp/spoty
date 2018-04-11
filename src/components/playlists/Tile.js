@@ -1,33 +1,24 @@
 import React from 'react';
-import '../css/tile.css';
+import '../../css/tile.css';
 import { connect } from 'react-redux';
+import { get_playlist_tracks } from '../../actions';
 
-import { get_playlist_tracks } from '../actions';
 
 class Tile extends React.Component{
 
 	fetchPlaylistTracks = (playlistId) => {
-		let token = this.props.state.access_token;
-		let ownerid = this.props.ownerid;
-		let playlistid = this.props.playlistid;
-		
-		new Promise((resolve, reject) => {
-			this.props.dispatch(get_playlist_tracks(token, playlistid, ownerid));
-			resolve();	
-		})
-		.then((results) => {
-			
-
-		})
+		let playlistDetails = this.props.state.playlists.items[this.props.index];
+		console.log(playlistDetails);
+		return playlistDetails;
 		
 	}
 
 	render(){
 		return (
 			<div className="tile" 
+				index={`${this.props.index}`}
 				playlistid={this.props.playlistid}
-				ownerid={this.props.ownerid}
-				onClick={this.fetchPlaylistTracks}
+				onClick={() => this.props.getIndex(this.props.index)}
 			>
 				<img src={this.props.img} alt="" />
 				<div className="tile-details">

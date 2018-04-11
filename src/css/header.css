@@ -1,15 +1,15 @@
 .main-header {
+	height: 50px;
 	background: #2ab858;
 }
 
 .search-form{
 	margin: auto;
-	max-width: 50%;
 	text-align: center;
 }
 
 #inp-search{
-	color: #fff;
+	color: green;
 }
 
 .btn-search span{

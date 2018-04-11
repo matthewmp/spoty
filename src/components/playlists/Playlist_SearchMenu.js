@@ -7,33 +7,21 @@ class Playlist_SearchMenu extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			featuredPlaylist: true,
-			myPlaylist: false,
+			myPlaylist: true,
 			search: false
 		}
 	}
 	
 	selectMyPlaylistMode = () => {
 		this.setState({
-			featuredPlaylist: false,
 			myPlaylist: true,
 			search: false
 		});
 		this.props.history.push('/my-playlists');
 	};
 
-	selectFeaturedPlaylistMode = () => {
-		this.setState({
-			featuredPlaylist: true,
-			myPlaylist: false,
-			search: false
-		});
-		this.props.history.push('/featured-playlists')
-	};
-
 	selectSearchMode = () => {
 		this.setState({
-			featuredPlaylist: false,
 			myPlaylist: false,
 			search: true
 		});
@@ -46,13 +34,6 @@ class Playlist_SearchMenu extends React.Component{
 		const searchClass = this.state.search ? 'selected' : 'not-selected';
 		return(
 			<div className="playlistMenu">
-				<span 
-					className={`${featuredPlaylistClass} plMode`}
-					onClick={this.selectFeaturedPlaylistMode}
-				>
-					Featured Playlists
-				</span> 
-				/  
 				<span 
 					className={`${myPlaylistClass} plMode `}
 					onClick={this.selectMyPlaylistMode}

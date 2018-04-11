@@ -1,0 +1,39 @@
+.track-wrapper{
+	display: flex;
+	border-bottom: 1px solid #fff;
+	background: rgba(40,40,40,0.8);
+	cursor: pointer;
+}
+
+.track-wrapper:hover{
+	background: rgba(200,200,200,0.7);
+}
+
+.index{
+	color: #fff;
+	display: inline-block;
+	align-self: center;
+	margin: 0 20px 0 20px;
+	border: 1px solid #fff;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	
+	
+
+}
+
+audio{
+	margin: 3px 0 3px 0;
+	cursor: pointer;
+	width: 100%;
+	padding: 3px;
+}
+
+audio::-webkit-media-controls-panel{
+	margin: 3px 0 3px 0;
+	cursor: pointer;
+	width: 100%;
+	background: rgba(40,40,40,0.8);
+
+}
