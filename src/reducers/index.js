@@ -24,19 +24,9 @@ export const reducer = (state=initialState, action) => {
 			playlists: action.playlists
 		})
 	}
-	else if(action.type === actions.GET_FEATURED_PLAYLISTS){
-		return Object.assign({}, state, {
-			featuredPlaylists: action.payload
-		})
-	}
 	else if(action.type === actions.SEARCH_TRACK){
 		return Object.assign({}, state, {
-			searchTrack: action.payload
-		})
-	}
-	else if(action.type === actions.SEARCH_ARTIST){
-		return Object.assign({}, state, {
-			searchArtist: action.payload
+			searchResults: action.payload
 		})
 	}
 	else if(action.type === actions.GET_PLAYLIST_TRACKS){
@@ -47,6 +37,12 @@ export const reducer = (state=initialState, action) => {
 	else if(action.type === actions.CLEAR_PLAYLIST){
 		return Object.assign({}, state, {
 			selectedPlaylistTracks: null
+		})
+	}
+	else if(action.type === actions.CLEAR_SEARCH){
+		return Object.assign({}, state, {
+			searchTrack: '',
+			searchArtist: ''
 		})
 	}
 	else {

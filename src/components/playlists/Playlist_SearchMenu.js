@@ -17,6 +17,7 @@ class Playlist_SearchMenu extends React.Component{
 			myPlaylist: true,
 			search: false
 		});
+		console.log(this.props.history)
 		this.props.history.push('/my-playlists');
 	};
 
@@ -25,11 +26,20 @@ class Playlist_SearchMenu extends React.Component{
 			myPlaylist: false,
 			search: true
 		});
+		console.log(this.props.history)
 		this.props.history.push('/search')
 	}
 
+	componentDidMount(){
+		const hash = this.props.location.pathname;
+		if(hash === '/search'){
+			this.selectSearchMode();
+		} else if(hash === '/my-playlists'){
+			this.selectMyPlaylistMode();	
+		}
+	}
+
 	render(){
-		const featuredPlaylistClass = this.state.featuredPlaylist ? 'selected' : 'not-selected';
 		const myPlaylistClass = this.state.myPlaylist ? 'selected' : 'not-selected';
 		const searchClass = this.state.search ? 'selected' : 'not-selected';
 		return(

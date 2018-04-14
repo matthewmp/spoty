@@ -40,32 +40,3 @@ const mapStateToProps = (state, props) => ({
 })
 
 export default connect(mapStateToProps)(App);
-
-
-  // // retrieve access token and user id
-  // getIds = () => { 
-  //   const ids = {
-  //     token: this.props.state.access_token,
-  //     user: this.props.state.id
-  //   } 
-  //   return ids;
-  // }
-
-  // // Check App State in Console
-  // showState = () => {
-  //   console.log(this.props.state);
-  // }
-
-  // getPlaylists = () => {
-  //   this.props.dispatch(actions.get_playlists(this.props.state.access_token));
-  // }
-
-  // getPlaylistTracks = () => {
-  //   let id = this.getIds();
-  //   this.props.dispatch(actions.get_playlist_tracks(id.token, '5BzivFb136jUvAIkuCFDZC' , id.user))
-  // }
-
-  // getFeaturedPlaylists = () => {
-  //   let id = this.getIds();
-  //   this.props.dispatch(actions.get_featured_playlists(id.token));
-  // }

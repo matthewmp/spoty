@@ -74,49 +74,24 @@ export const get_profile = (token) => dispatch =>{
 	xml.send();
 }
 
-export const GET_FEATURED_PLAYLISTS = 'GET_FEATURED_PLAYLISTS';
-export const get_featured_playlists = (token, user_id) => dispatch => {
-	const url = `https://api.spotify.com/v1/users/${user_id}/playlists`;
-	let xml = new XMLHttpRequest();
-	xml.open('GET', url);
-	xml.responseType = 'json';
-	xml.setRequestHeader('Authorization', 'Bearer ' + token);
-	xml.onload = function(){
-		if(xml.status === 200){
-			dispatch({type: GET_FEATURED_PLAYLISTS, payload: xml.response})
-		}
-	}
-	xml.send();
-}
+export const CLEAR_SEARCH = 'CLEAR_SEARCH';
+export const clear_search = () => ({
+	type: CLEAR_SEARCH
+});
 
 // Search Spotify with 'term' for tracks then call searchArtist
 export const SEARCH_TRACK = 'SEARCH_TRACK';
 export const searchTrack = (token, term) => dispatch => {
-	let url = `https://api.spotify.com/v1/search?q="${term}"&type=track&limit=50`;
+	let url = `https://api.spotify.com/v1/search?q=${encodeURI(term)}&type=track%2Calbum%2Cplaylist&limit=50`;
+	console.warn('!!!!!!!!', url);
 	var xml = new XMLHttpRequest();
 	xml.open('GET', url);
 	xml.responseType = 'json';
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
 	xml.onreadystatechange = function(){
 		if(xml.response){
+			console.log("XML!!!: ", xml.response)
 			dispatch({type: SEARCH_TRACK, payload: xml.response});
-		}
-	}
-	xml.send();
-	dispatch(searchArtist(token, term));
-}
-
-// Search Spotify with 'term' for artists
-export const SEARCH_ARTIST = 'SEARCH_ARTIST';
-export const searchArtist = (token, term) => dispatch => {
-	const url = `https://api.spotify.com/v1/search?q="${term}"&type=artist&limit=50`;
-	var xml = new XMLHttpRequest();
-	xml.open('GET', url);
-	xml.responseType = 'json';
-	xml.setRequestHeader('Authorization', 'Bearer ' + token);
-	xml.onreadystatechange = function(){
-		if(xml.response){
-			dispatch({type: SEARCH_ARTIST, payload: xml.response})
 		}
 	}
 	xml.send();

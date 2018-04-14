@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { withRouter } from 'react-router-dom';
+
 
 
 class SearchInput extends React.Component {
@@ -16,10 +15,12 @@ class SearchInput extends React.Component {
 
 	onSubmitForm = (e) => {
 		e.preventDefault();
-		this.submitSearchTerm();	
+		this.props.history.push('/search');
+		this.submitSearchTerm();
 	}
 
 	submitSearchTerm = () => {
+		console.log('Searching');
 		let token = this.props.state.access_token;
 		this.props.dispatch(actions.searchTrack(token, this.state.term));
 	}
@@ -36,7 +37,6 @@ class SearchInput extends React.Component {
 			<form className="search-form" onSubmit={this.onSubmitForm}>
 				 
 				    <input
-				      hintText="Search"
 				      id="inp-search"
 				      value={this.props.value}
 				      onChange={this.onInputChange}
@@ -61,4 +61,4 @@ const mapStateToProps = (state, props) => ({
 	state
 });
 
-export default connect(mapStateToProps)(SearchInput);
+export default withRouter(connect(mapStateToProps)(SearchInput));

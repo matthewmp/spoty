@@ -8,7 +8,6 @@ class Tile extends React.Component{
 
 	fetchPlaylistTracks = (playlistId) => {
 		let playlistDetails = this.props.state.playlists.items[this.props.index];
-		console.log(playlistDetails);
 		return playlistDetails;
 		
 	}

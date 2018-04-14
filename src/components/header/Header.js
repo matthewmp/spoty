@@ -17,7 +17,6 @@ class Header extends React.Component{
 
 	onSubmitForm = (e) => {
 		e.preventDefault();
-		this.child.onSubmitForm();
 	}
 
 	componentDidMount(){

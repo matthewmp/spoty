@@ -4,6 +4,7 @@ import Tile from './Tile';
 import * as actions from '../../actions';
 import '../../css/tile.css';
 import PlayListDetails from './PlayListDetails';
+import PlaylistSearchMenu from './Playlist_SearchMenu';
 
 class UserPlaylists_View extends React.Component{
 	constructor(props){
@@ -28,7 +29,6 @@ class UserPlaylists_View extends React.Component{
   	getIndex = (index) => {
   		this.props.dispatch(actions.clear_playlist());
   		let info = this.props.state.playlists.items[index];
-  		console.log('INFO: ', info);
   		this.setState({
   			name: info.name, id: info.id, images: info.images,
   			user_img: this.props.state.img_url,
@@ -36,7 +36,6 @@ class UserPlaylists_View extends React.Component{
   		});
   		let token = this.props.state.access_token;
   		let user_id = this.props.state.id;
-  		console.log('ID: ', this.state.id)
   		this.props.dispatch(actions.get_playlist_tracks(token, info.id, info.owner.id));
   	}
 
@@ -47,8 +46,6 @@ class UserPlaylists_View extends React.Component{
   	}
 
 	render(){
-		console.log(this.props.state);
-		console.log("LOCAL: ", this.state);
 		let playlists = this.props.state.playlists;
 
 		// Render Playlist Tiles
@@ -87,6 +84,7 @@ class UserPlaylists_View extends React.Component{
 		
 		return(
 			<div className="playlist-list-wrapper">
+				<PlaylistSearchMenu />
 				<h1>My Playlists View</h1>
 				<div className="tile-wrapper">
 					
