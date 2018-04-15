@@ -1,3 +1,5 @@
+
+
 .playlist-list-wrapper{
 	width: 100%;
 }
@@ -11,13 +13,18 @@
 	display: inline-block;
 	position: relative;
 	max-width: 200px;
+	max-height: 200px;
 	margin: 10px;
+	box-shadow: 1px 1px 20px #000;
 	cursor: pointer;
 }
 
 .tile img{
 	max-width: 200px;
-	border-radius: 3px;
+}
+
+.tile:hover{
+	box-shadow: 1px 1px 25px green;
 }
 
 .tile:hover > img{
