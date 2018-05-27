@@ -1,6 +1,12 @@
 .main-header {
+	display: flex;
+	justify-content: center;
 	height: 50px;
 	background: #2ab858;
+}
+
+.search-form-wrapper{
+	align-self: center;
 }
 
 .search-form{
@@ -9,9 +15,24 @@
 }
 
 #inp-search{
+	border-style: none;
 	color: green;
+	font-family: arial;
+	font-size: 20px;
+	padding: 5px 0 5px 8px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
 }
 
-.btn-search span{
+.btn-search {
+	position: relative;
+	border-style: none;
+	height: 33px;
+	top: -2px;
 	color: #fff;
+	background: #336633;
+	font-family: arial, sans-serif;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	cursor: pointer;
 }

@@ -70,6 +70,7 @@ class SearchResults extends React.Component{
 		    				key={index} 
 		    				playlistid={playlist.id}
 		    				getIndex={this.getIndex}
+		    				totalTracks={playlist.tracks.total}
 	    				/> || undefined
 				} 
 			})

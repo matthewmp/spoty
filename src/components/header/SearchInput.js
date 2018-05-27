@@ -33,7 +33,7 @@ class SearchInput extends React.Component {
 
 	render(){
 		return(
-			<div>
+			<div className="search-form-wrapper">
 			<form className="search-form" onSubmit={this.onSubmitForm}>
 				 
 				    <input

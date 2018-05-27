@@ -9,6 +9,7 @@ import Header from './components/header/Header';
 import UserPlaylists_View from './components/playlists/UserPlaylists_View';
 import SearchResults from './components/SearchResults';
 import SearchInput from './components/header/SearchInput';
+import './css/normalize.css';
 
 import store from './store';
 

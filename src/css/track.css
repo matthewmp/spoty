@@ -1,8 +1,14 @@
 .track-wrapper{
 	display: flex;
+	min-height: 40px;
 	border-bottom: 1px solid #fff;
 	background: rgba(40,40,40,0.8);
 	cursor: pointer;
+}
+
+.track-wrapper p{
+	color: #fff;
+	margin: auto;
 }
 
 .track-wrapper:hover{
@@ -14,13 +20,9 @@
 	display: inline-block;
 	align-self: center;
 	margin: 0 20px 0 20px;
-	border: 1px solid #fff;
 	width: 20px;
 	height: 20px;
 	line-height: 20px;
-	
-	
-
 }
 
 audio{
@@ -35,5 +37,4 @@ audio::-webkit-media-controls-panel{
 	cursor: pointer;
 	width: 100%;
 	background: rgba(40,40,40,0.8);
-
 }

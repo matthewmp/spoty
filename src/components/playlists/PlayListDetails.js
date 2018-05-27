@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../../css/playlist-details.css'
 
 import Track from './Track';
+import TrackUnavailable from './TrackUnavailable';
 
 class PlayListDetails extends React.Component{
 	constructor(props){
@@ -27,7 +28,10 @@ class PlayListDetails extends React.Component{
 
 		try {
 			tracks = this.props.state.selectedPlaylistTracks.map((track, ind) => {
-				return <Track preview={track.track.preview_url} key={ind} index={ind} />
+				let availableTracks = track.track.preview_url ? 
+				<Track preview={track.track.preview_url} key={ind} index={ind} />	: 
+				<TrackUnavailable key={ind} index={ind} />
+				return availableTracks;				
 			});
 		}
 		catch(err){console.log('Error Getting Tracks')};
