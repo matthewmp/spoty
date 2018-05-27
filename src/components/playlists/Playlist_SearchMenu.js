@@ -17,7 +17,6 @@ class Playlist_SearchMenu extends React.Component{
 			myPlaylist: true,
 			search: false
 		});
-		console.log(this.props.history)
 		this.props.history.push('/my-playlists');
 	};
 
@@ -26,7 +25,6 @@ class Playlist_SearchMenu extends React.Component{
 			myPlaylist: false,
 			search: true
 		});
-		console.log(this.props.history)
 		this.props.history.push('/search')
 	}
 

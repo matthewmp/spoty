@@ -54,13 +54,10 @@ class SearchResults extends React.Component{
 
 	render(){
 		let results;
-		console.log('SearchResults: ', this.props.state)
-		console.warn('LOCAL', this.state);
 		try{
 			const searchResults = this.props.state.searchResults.playlists.items;
 			results = searchResults.map((el, index) => {
 				if(el.type == 'playlist' && el.images.length > 0){
-					console.log("HEHEHHEHHR");
 					let playlist = el;
 					let image = playlist.images[0].url;
 					return <Tile 
