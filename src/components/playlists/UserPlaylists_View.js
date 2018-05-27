@@ -34,7 +34,6 @@ class UserPlaylists_View extends React.Component{
   			displayDetails: true
   		});
   		let token = this.props.state.access_token;
-  		let user_id = this.props.state.id;
   		this.props.dispatch(actions.get_playlist_tracks(token, info.id, info.owner.id));
   	}
 

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PlaylistSearchMenu from './playlists/Playlist_SearchMenu';
 import Tile from './playlists/Tile';
 import PlayListDetails from './playlists/PlayListDetails';
-import Header from './header/Header';
 
 import * as actions from '../actions';
 
@@ -21,7 +20,7 @@ class SearchResults extends React.Component{
 	}
 
 	getIndex = (index) => {
-  		//this.props.dispatch(actions.clear_playlist());
+  		this.props.dispatch(actions.clear_playlist());
   		let info = this.props.state.searchResults.playlists.items[index];
   		this.setState({
   			name: info.name, id: info.id, images: info.images,
@@ -29,7 +28,6 @@ class SearchResults extends React.Component{
   			displayDetails: true
   		});
   		let token = this.props.state.access_token;
-  		let user_id = this.props.state.id;
   		this.props.dispatch(actions.get_playlist_tracks(token, info.id, info.owner.id));
   	}
 
@@ -57,7 +55,7 @@ class SearchResults extends React.Component{
 		try{
 			const searchResults = this.props.state.searchResults.playlists.items;
 			results = searchResults.map((el, index) => {
-				if(el.type == 'playlist' && el.images.length > 0){
+				if(el.type === 'playlist' && el.images.length > 0){
 					let playlist = el;
 					let image = playlist.images[0].url;
 					return <Tile 

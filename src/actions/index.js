@@ -25,7 +25,6 @@ export const get_playlists = (token, user_id) => dispatch => {
 		if(xml.status === 200){
 			const resp = xml.response;
 			dispatch({type: GET_PLAYLISTS, playlists: resp});
-			console.log('User playlists: ', resp);
 		} 
 	}
 	xml.onerror = function(e){console.log('ERROR Getting Playlists From Action: ', e)}
@@ -41,8 +40,6 @@ export const get_playlist_tracks = (token, playlist_id, owner_id) => (dispatch) 
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
 	
 	xml.onload = function(){
-		console.log(playlist_id, owner_id	)
-		console.log('PL TRACKS: ', xml.response);
 		if(xml.status === 200){
 			dispatch({type: GET_PLAYLIST_TRACKS, payload: xml.response.items})	
 		}
@@ -83,14 +80,12 @@ export const clear_search = () => ({
 export const SEARCH_TRACK = 'SEARCH_TRACK';
 export const searchTrack = (token, term) => dispatch => {
 	let url = `https://api.spotify.com/v1/search?q=${encodeURI(term)}&type=track%2Calbum%2Cplaylist&limit=50`;
-	console.warn('!!!!!!!!', url);
 	var xml = new XMLHttpRequest();
 	xml.open('GET', url);
 	xml.responseType = 'json';
 	xml.setRequestHeader('Authorization', 'Bearer ' + token);
 	xml.onreadystatechange = function(){
 		if(xml.response){
-			console.log("XML!!!: ", xml.response)
 			dispatch({type: SEARCH_TRACK, payload: xml.response});
 		}
 	}

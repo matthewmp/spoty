@@ -43,7 +43,7 @@ class PlayListDetails extends React.Component{
 				<div className="card">
 					<div className="card-header">
 						<div className="card-img-wrapper">
-						  <img src={images} />
+						  <img src={images} alt=""/>
 						</div>
 						<p className="title">{this.props.name}</p>
 					</div>

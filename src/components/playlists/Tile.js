@@ -1,8 +1,6 @@
 import React from 'react';
 import '../../css/tile.css';
 import { connect } from 'react-redux';
-import { get_playlist_tracks } from '../../actions';
-
 
 class Tile extends React.Component{
 
