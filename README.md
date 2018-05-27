@@ -1,1 +1,1 @@
-Spotify player with voice command
+Simple Spotify Player :)
